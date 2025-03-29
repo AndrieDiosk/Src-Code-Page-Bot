@@ -8,7 +8,7 @@ module.exports = {
     const [number, delay] = args;
 
     if (!number || !delay) {
-      sendMessage(senderId, { text: 'Usage: smsbomb [number] [delay]' }, pageAccessToken);
+      sendMessage(senderId, { text: 'Please enter number and second limit.' }, pageAccessToken);
       return;
     }
 
@@ -18,7 +18,7 @@ module.exports = {
       
       const { message, number, seconds } = response.data;
       if (status) {
-        sendMessage(senderId, { text: `Successfully sent SMS messages to ${number} within ${seconds}. ${fail} messages failed.` }, pageAccessToken);
+        sendMessage(senderId, { text: `Successfully sent SMS messages to ${number} within ${seconds}.` }, pageAccessToken);
       } else {
         sendMessage(senderId, { text: 'Failed to send SMS messages.' }, pageAccessToken);
       }
