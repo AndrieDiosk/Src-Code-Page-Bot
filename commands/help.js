@@ -5,7 +5,7 @@ const { sendMessage } = require('../handles/sendMessage');
 module.exports = {
   name: 'help',
   description: 'Show available commands',
-  usage: 'help\nhelp [command name]',
+  usage: 'help [ command name ]',
   author: 'System',
   execute(senderId, args, pageAccessToken) {
     const commandsDir = path.join(__dirname, '../commands');
@@ -20,12 +20,9 @@ module.exports = {
 
       if (commandFile) {
         const command = require(path.join(commandsDir, commandFile));
-        const commandDetails = `
-━━━━━━━━━━━━━━
-𝙲𝚘𝚖𝚖𝚊𝚗𝚍 𝙽𝚊𝚖𝚎: ${command.name}
-𝙳𝚎𝚜𝚌𝚛𝚒𝚋𝚝𝚒𝚘𝚗: ${command.description}
-𝚄𝚜𝚊𝚐𝚎: ${command.usage}
-━━━━━━━━━━━━━━`;
+        const commandDetails = `Command name : ${command.name}
+Description : ${command.description}
+Usage : ${command.usage}`;
         
         sendMessage(senderId, { text: commandDetails }, pageAccessToken);
       } else {
@@ -36,18 +33,15 @@ module.exports = {
 
     const commands = commandFiles.map(file => {
       const command = require(path.join(commandsDir, file));
-      return `│ - ${command.name}`;
+      return `${command.name}`;
     });
 
-    const helpMessage = `
-━━━━━━━━━━━━━━
-𝙰𝚟𝚊𝚒𝚕𝚊𝚋𝚕𝚎 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜:
-╭─╼━━━━━━━━╾─╮
+    const helpMessage = `Available Commands :
+
 ${commands.join('\n')}
-╰─━━━━━━━━━╾─╯
-Chat -help [name] 
-to see command details.
-━━━━━━━━━━━━━━`;
+
+Chat help [ name ] 
+to see command details.`;
 
     sendMessage(senderId, { text: helpMessage }, pageAccessToken);
   }
