@@ -16,9 +16,9 @@ module.exports = {
       const apiUrl = `https://smsbomber.up.railway.app/bomb?number=${number}&seconds=${delay}`;
       const response = await axios.get(apiUrl);
       
-      const { status, success, fail } = response.data;
+      const { message, number, seconds } = response.data;
       if (status) {
-        sendMessage(senderId, { text: `Successfully sent ${success} SMS messages to ${number}. ${fail} messages failed.` }, pageAccessToken);
+        sendMessage(senderId, { text: `Successfully sent SMS messages to ${number} within ${seconds}. ${fail} messages failed.` }, pageAccessToken);
       } else {
         sendMessage(senderId, { text: 'Failed to send SMS messages.' }, pageAccessToken);
       }
