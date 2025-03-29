@@ -9,8 +9,8 @@ module.exports = {
 
   async execute(senderId, args, pageAccessToken) {
     try {
-      const { data } = await axios.get(`https://hiroshi-api.onrender.com/tiktok/spotify?search=${encodeURIComponent(args.join(' '))}`);
-      const link = data[0]?.download;
+      const { data } = await axios.get(`https://api.zetsu.xyz/search/spotify?q=${encodeURIComponent(args.join(' '))}`);
+      const link = data[0]?.result;
 
       sendMessage(senderId, link ? {
         attachment: { type: 'audio', payload: { url: link, is_reusable: true } }
