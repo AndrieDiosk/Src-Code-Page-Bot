@@ -9,7 +9,7 @@ module.exports = {
     try {
       const apiUrl = `https://jonell01-ccprojectsapihshs.hf.space/api/gpt4?ask=${encodeURIComponent(prompt)}&uid=${senderId}`;
       const response = await axios.get(apiUrl);
-      const text = response.data.gpt4;
+      const text = response.data;
 
       // Split the response into chunks if it exceeds 2000 characters
       const maxMessageLength = 2000;
