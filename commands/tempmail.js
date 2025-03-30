@@ -6,14 +6,14 @@ const domains = ["rteet.com", "1secmail.com", "1secmail.org", "1secmail.net", "w
 module.exports = {
   name: 'tempmail',
   description: 'Generate temporary email and check inbox',
-  usage: '-tempmail gen OR -tempmail inbox <email>',
+  usage: 'tempmail gen OR tempmail inbox [ email ]',
   author: 'coffee',
 
   async execute(senderId, args, pageAccessToken) {
     const [cmd, email] = args;
     if (cmd === 'gen') {
       const domain = domains[Math.floor(Math.random() * domains.length)];
-      return sendMessage(senderId, { text: `📧 | Temporary Email: ${Math.random().toString(36).slice(2, 10)}@${domain}` }, pageAccessToken);
+      return sendMessage(senderId, { text: `tempmail : ${Math.random().toString(36).slice(2, 10)}@${domain}` }, pageAccessToken);
     }
 
     if (cmd === 'inbox' && email && domains.some(d => email.endsWith(`@${d}`))) {
@@ -30,6 +30,6 @@ module.exports = {
       }
     }
 
-    sendMessage(senderId, { text: 'Invalid usage. Use -tempmail gen or -tempmail inbox <email>' }, pageAccessToken);
+    sendMessage(senderId, { text: 'Invalid usages, use tempmail gen or tempmail inbox [ email ]' }, pageAccessToken);
   },
 };
