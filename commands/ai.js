@@ -7,7 +7,7 @@ module.exports = {
   async execute(senderId, args, pageAccessToken, sendMessage) {
     const prompt = args.join(' ');
     try {
-      const apiUrl = `https://api.zetsu.xyz/api/gpt-4-turbo?uid=&uid=${senderId}&prompt=${encodeURIComponent(prompt)}`;
+      const apiUrl = `https://api.zetsu.xyz/api/gpt-4-turbo?uid=${senderId}&prompt=${encodeURIComponent(prompt)}`;
       const respo = await axios.get(apiUrl);
       const text = respo.data.response;
 
