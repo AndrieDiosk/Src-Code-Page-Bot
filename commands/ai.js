@@ -2,14 +2,14 @@ const axios = require('axios');
 
 module.exports = {
   name: 'ai',
-  description: 'Ask a question to AI (GPT-4)',
+  description: 'Ask a question to AI (GPT-4) Turbo',
   author: 'Deku (rest api)',
   async execute(senderId, args, pageAccessToken, sendMessage) {
     const prompt = args.join(' ');
     try {
-      const apiUrl = `https://xnilnew404.onrender.com/xnil/gpt4?ask=${encodeURIComponent(prompt)}&uid=${senderId}`;
-      const responseh = await axios.get(apiUrl);
-      const text = responseh.data.content;
+      const apiUrl = `https://api.zetsu.xyz/api/gpt-4-turbo?uid=&uid=${senderId}&prompt=${encodeURIComponent(prompt)}`;
+      const respo = await axios.get(apiUrl);
+      const text = respo.data.response;
 
       // Split the response into chunks if it exceeds 2000 characters
       const maxMessageLength = 2000;
