@@ -7,9 +7,9 @@ module.exports = {
   async execute(senderId, args, pageAccessToken, sendMessage) {
     const prompt = args.join(' ');
     try {
-      const apiUrl = `https://jonell01-ccprojectsapihshs.hf.space/api/gpt4?ask=${encodeURIComponent(prompt)}&id=${senderId}`;
+      const apiUrl = `http://87.106.100.187:6312/api/blackbox?prompt=${encodeURIComponent(prompt)}&uid=${senderId}`;
       const respo = await axios.get(apiUrl);
-      const text = respo.data;
+      const text = respo.data.response;
 
       // Split the response into chunks if it exceeds 2000 characters
       const maxMessageLength = 2000;
