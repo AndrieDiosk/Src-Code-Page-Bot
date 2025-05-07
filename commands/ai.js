@@ -9,7 +9,7 @@ module.exports = {
     try {
       const apiUrl = `https://jonell01-ccprojectsapihshs.hf.space/api/blackb?ask=${encodeURIComponent(prompt)}&id=${senderId}`;
       const respo = await axios.get(apiUrl);
-      const text = respo.data.response;
+      const text = respo.data.message;
 
       // Split the response into chunks if it exceeds 2000 characters
       const maxMessageLength = 2000;
