@@ -7,7 +7,7 @@ module.exports = {
   async execute(senderId, args, pageAccessToken, sendMessage) {
     const prompt = args.join(' ');
     try {
-      const apiUrl = `http://87.106.100.187:6312/api/blackbox?prompt=${encodeURIComponent(prompt)}&uid=${senderId}`;
+      const apiUrl = `https://jonell01-ccprojectsapihshs.hf.space/api/blackb?ask=${encodeURIComponent(prompt)}&id=${senderId}`;
       const respo = await axios.get(apiUrl);
       const text = respo.data.response;
 
