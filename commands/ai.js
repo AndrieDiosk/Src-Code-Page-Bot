@@ -7,9 +7,9 @@ module.exports = {
   async execute(senderId, args, pageAccessToken, sendMessage) {
     const prompt = args.join(' ');
     try {
-      const apiUrl = `https://jonell01-ccprojectsapihshs.hf.space/api/blackb?ask=${encodeURIComponent(prompt)}&id=${senderId}`;
+      const apiUrl = `https://api.zetsu.xyz/api/blackbox?prompt=${encodeURIComponent(prompt)}&uid=${senderId}`;
       const respo = await axios.get(apiUrl);
-      const text = respo.data.message;
+      const text = respo.data.response;
 
       // Split the response into chunks if it exceeds 2000 characters
       const maxMessageLength = 2000;
